@@ -6,6 +6,7 @@ int main(int argc, char *argv[])
 {
     // Start curses mode
     initscr();
+    timeout(0);
 
     // Enable color support
     start_color();
@@ -13,19 +14,15 @@ int main(int argc, char *argv[])
     // Generate a basic map
     Map *map = map_generate(LINES, COLS);
 
-    // Draw the map as-is
-    map_draw(map);
+    while ((getch()) != 'q') {
+        map_draw(map);
 
-    // Print it on to the real screen
-    refresh();
+        // Print on the real screen
+        refresh();
+    }
 
-    // Wait for user input
-    getch();
-
-    // Free the map
+    // Cleanup
     map_free(map);
-
-    // End ncurses mode
     endwin();
 
     return 0;

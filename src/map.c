@@ -1,23 +1,18 @@
 #include "map.h"
 
-Map *map_generate(int row, int column)
+Map *map_generate(int column, int row)
 {
     Map *map = malloc(sizeof(Map));
-    map->tiles = malloc(sizeof(char) * row * column);
+    map->tiles = malloc(sizeof(char) * column * row);
 
     // Todo real stuff
     init_pair(1, COLOR_RED, COLOR_BLACK);
 
     // Generate basic terrain
-    for (int x = 0; x < row; x++) {
-        for (int y = 0; y < column; y++) {
+    for (int x = 0; x < column; x++) {
+        for (int y = 0; y < row; y++) {
             int pos = x * column + y;
-
-            Tile tile = {};
-            tile.character = 'A';
-            tile.color_pair = 1;
-
-            map->tiles[pos] = tile;
+            map->tiles[pos] = 'A';
         }
     }
 
@@ -29,21 +24,12 @@ Map *map_generate(int row, int column)
 
 void map_draw(Map *map)
 {
-    for (int x = 0; x < map->total_row; x++) {
-        for (int y = 0; y < map->total_column; y++) {
+    for (int x = 0; x < map->total_column; x++) {
+        for (int y = 0; y < map->total_row; y++) {
             int pos = x * map->total_column + y;
 
-            // enable color if any
-            int color_pair = map->tiles[pos].color_pair;
-            if (color_pair != -1)
-                attron(COLOR_PAIR(color_pair));
-
             // draw the tile
-            mvaddch(x, y, map->tiles[pos].character);
-
-            // disable color if any
-            if (color_pair != -1)
-                attroff(COLOR_PAIR(color_pair));
+            mvaddch(x, y, map->tiles[pos]);
         }
     }
 }
