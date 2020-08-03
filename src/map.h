@@ -4,9 +4,15 @@
 #include <stdlib.h>
 #include <ncurses.h>
 
+struct Tile
+{
+    char character;
+    int color_pair;
+} typedef Tile;
+
 struct Map
 {
-    char *tiles;
+    Tile *tiles;
     unsigned short total_row;
     unsigned short total_column;
 } typedef Map;
