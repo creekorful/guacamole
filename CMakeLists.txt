@@ -7,7 +7,7 @@ set(CMAKE_C_STANDARD 11)
 find_package(Curses REQUIRED)
 include_directories(${CURSES_INCLUDE_DIR})
 
-add_executable(guacamole src/main.c)
+add_executable(guacamole src/main.c src/map.c src/map.h)
 
 # Link against ncurses
 target_link_libraries(guacamole ${CURSES_LIBRARIES})
