@@ -1,6 +1,6 @@
 #include <ncurses.h>
 
-#include "map.h"
+#include "map/map.h"
 
 int main(int argc, char *argv[])
 {
@@ -12,7 +12,7 @@ int main(int argc, char *argv[])
     start_color();
 
     // Generate a basic map
-    Map *map = map_generate(LINES, COLS);
+    Map *map = map_generate(LINES, COLS, '.');
 
     while ((getch()) != 'q') {
         map_draw(map);
