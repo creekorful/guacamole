@@ -6,10 +6,12 @@ Map *map_generate(int size_x, int size_y, char background) {
     pMap->size_x = size_x;
     pMap->size_y = size_y;
 
+    init_pair(1, COLOR_WHITE, COLOR_BLACK);
+
     // Generate basic terrain
     for (int y = 0; y < size_y; y++) {
         for (int x = 0; x < size_x; x++) {
-            map_set(pMap, x, y, tile_new(background, -1));
+            map_set(pMap, x, y, tile_new(background, 1));
         }
     }
 
@@ -20,7 +22,14 @@ void map_draw(Map *pMap) {
     for (int y = 0; y < pMap->size_y; y++) {
         for (int x = 0; x < pMap->size_x; x++) {
             Tile tile = map_get(pMap, x, y);
+
+            if (tile.color_pair != -1)
+                attron(COLOR_PAIR(tile.color_pair));
+
             mvaddch(x, y, tile.character);
+
+            if (tile.color_pair != -1)
+                attroff(COLOR_PAIR(tile.color_pair));
         }
     }
 }
