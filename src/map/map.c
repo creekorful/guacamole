@@ -1,17 +1,15 @@
 #include "map.h"
 
-Map *map_generate(int size_x, int size_y, chtype background) {
+Map *map_generate(int size_x, int size_y, Tile background) {
     Map *pMap = malloc(sizeof(Map));
     pMap->pTiles = malloc(sizeof(Tile) * size_x * size_y);
     pMap->size_x = size_x;
     pMap->size_y = size_y;
 
-    init_pair(1, COLOR_WHITE, COLOR_BLACK);
-
     // Generate basic terrain
     for (int y = 0; y < size_y; y++) {
         for (int x = 0; x < size_x; x++) {
-            map_set(pMap, x, y, tile_new(background, 1));
+            map_set(pMap, x, y, background);
         }
     }
 

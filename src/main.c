@@ -11,7 +11,8 @@ int main(int argc, char *argv[]) {
     start_color();
 
     // Generate a basic map
-    Map *map = map_generate(LINES, COLS, '.');
+    init_pair(1, COLOR_GREEN, COLOR_BLACK);
+    Map *map = map_generate(LINES, COLS, tile_new('.', 1));
 
     // Create a character
     init_pair(2, COLOR_YELLOW, COLOR_BLACK);
