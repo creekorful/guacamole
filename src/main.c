@@ -2,8 +2,7 @@
 
 #include "map/map.h"
 
-int main(int argc, char *argv[])
-{
+int main(int argc, char *argv[]) {
     // Start curses mode
     initscr();
     timeout(0);
@@ -13,6 +12,10 @@ int main(int argc, char *argv[])
 
     // Generate a basic map
     Map *map = map_generate(LINES, COLS, '.');
+
+    // Create a character
+    init_pair(2, COLOR_YELLOW, COLOR_BLACK);
+    map_set(map, 0, 0, tile_new('A' | A_BOLD, 2));
 
     while ((getch()) != 'q') {
         map_draw(map);

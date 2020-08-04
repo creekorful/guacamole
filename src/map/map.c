@@ -1,6 +1,6 @@
 #include "map.h"
 
-Map *map_generate(int size_x, int size_y, char background) {
+Map *map_generate(int size_x, int size_y, chtype background) {
     Map *pMap = malloc(sizeof(Map));
     pMap->pTiles = malloc(sizeof(Tile) * size_x * size_y);
     pMap->size_x = size_x;

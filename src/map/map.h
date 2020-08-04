@@ -12,7 +12,7 @@ struct Map {
     int size_y;
 } typedef Map;
 
-Map *map_generate(int size_x, int size_y, char background);
+Map *map_generate(int size_x, int size_y, chtype background);
 
 void map_draw(Map *pMap);
 
